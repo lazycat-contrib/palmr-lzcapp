@@ -1,0 +1,43 @@
+package: lazycat.community.app.palmr
+name: Palmr
+version: 3.0.0
+min_os_version: v1.3.8
+description: Open-Source File Transfer
+homepage: https://github.com/kyantech/Palmr
+author: kyantech
+application:
+  subdomain: palmr
+  background_task: true
+  public_path:
+    - /
+  routes:
+    - /=http://palmr:5487
+services:
+  palmr:
+    # kyantech/palmr:v3.0.0-beta.12
+    image: registry.lazycat.cloud/czyt/kyantech/palmr:0427196b98b79042
+    environment:
+      - ENCRYPTION_KEY={{stable_secret "palmr#encryption_key" | substr 0 32}}
+      - ENABLE_S3={{.U.enable_s3}}
+      - PALMR_UID=1000
+      - PALMR_GID=1000
+ {{if .U.enable_s3}}
+      - S3_ENDPOINT={{.U.s3_endpoint}} # S3 endpoint (you have to set this to the s3 endpoint of the s3 server) CHANGE THIS TO YOUR S3 ENDPOINT
+      - S3_USE_SSL={{.U.s3_use_ssl}} # Use ssl for the s3 server always true for s3
+      - S3_ACCESS_KEY={{.U.s3_access_key}} # S3 access key (you have to generate this key in s3 server)
+      - S3_SECRET_KEY={{.U.s3_secret_key}} # S3 secret key (you have to generate this key in s3 server)
+      - S3_REGION={{.U.s3_region}} # S3 region (us-east-1 is the default region) but it depends on your s3 server region
+      - S3_BUCKET_NAME={{.U.s3_bucket_name}} # Bucket name for the S3 storage (here we are using palmr-files as the bucket name to understand that this is the bucket for palmr)
+      - S3_FORCE_PATH_STYLE={{.U.s3_force_path_style}}
+{{ end }}
+    binds:
+      - /lzcapp/var/data:/app/server
+ {{if .U.enable_s3}}
+    setup_script: |
+        echo s3 enabled ${ENABLE_S3}
+        echo s3 endpoint ${S3_ENDPOINT}
+        echo usessl ${S3_USE_SSL}
+        echo bucket ${S3_BUCKET_NAME}
+{{else}}
+        echo s3 disabled for this deployment
+{{end}}

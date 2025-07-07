@@ -1,0 +1,82 @@
+params:
+  - id: enable_s3
+    type: bool
+    name: "enable s3 support"
+    description: "enable s3 support"
+    default_value: false
+
+  - id: s3_endpoint
+    type: string
+    name: "s3 endpoint"
+    description: "s3 endpoint"
+    optional: true
+
+  - id: s3_bucket_name
+    type: string
+    name: "s3 bucket name"
+    description: "s3 bucket name"
+    optional: true
+
+  - id: s3_region
+    type: string
+    name: "s3 region"
+    description: "s3 region"
+    optional: true
+
+  - id: s3_access_key
+    type: string
+    name: "s3 access key"
+    description: "s3 access key"
+    optional: true
+
+  - id: s3_secret_key
+    type: string
+    name: "s3 secret key"
+    description: "s3 secret key"
+    optional: true
+
+  - id: s3_use_ssl
+    type: bool
+    name: "s3 use ssl"
+    description: "s3 use ssl"
+    default_value: true
+    optional: true
+
+  - id: s3_force_path_style
+    type: bool
+    name: "s3 force path style"
+    description: "s3 force path style"
+    optional: true
+
+locales:
+  zh:
+    enable_s3:
+      name: "是否启用S3支持"
+      description: "是否启用S3支持,默认不启用,若启用则需要配置下面的配置项目,否则程序可能报错"
+    s3_endpoint:
+      name: "S3服务地址"
+      description: "S3服务地址"
+
+    s3_region:
+      name: "S3区域"
+      description: "S3区域"
+
+    s3_bucket_name:
+      name: "S3桶名称"
+      description: "S3桶名称"
+
+    s3_access_key:
+      name: "S3访问密钥"
+      description: "S3访问密钥(AccessKey)"
+
+    s3_secret_key:
+      name: "S3密钥"
+      description: "S3密钥(AccessKeySecret)"
+
+    s3_use_ssl:
+      name: "连接S3使用SSL"
+      description: "连接S3使用SSL"
+
+    s3_force_path_style:
+      name: "S3强制路径样式"
+      description: "S3强制路径样式"
