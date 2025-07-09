@@ -1,6 +1,6 @@
 package: lazycat.community.app.palmr
 name: Palmr
-version: 3.0.0
+version: 3.1.0
 min_os_version: 1.3.8
 description: Open-Source File Transfer
 homepage: https://github.com/kyantech/Palmr
@@ -14,8 +14,8 @@ application:
     - /=http://palmr:5487
 services:
   palmr:
-    # kyantech/palmr:v3.0.0-beta.12
-    image: registry.lazycat.cloud/czyt/kyantech/palmr:0427196b98b79042
+    # kyantech/palmr:v3.1.0-beta
+    image: registry.lazycat.cloud/czyt/kyantech/palmr:a025c1a0ebf9d7a6
     environment:
       - ENCRYPTION_KEY={{stable_secret "palmr#encryption_key" | substr 0 32}}
       - ENABLE_S3={{.U.enable_s3}}
