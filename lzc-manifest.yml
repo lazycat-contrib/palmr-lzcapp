@@ -28,12 +28,6 @@ services:
 {{ end }}
     binds:
       - /lzcapp/var/data:/app/server
- {{if .U.enable_s3}}
     setup_script: |
-        echo s3 enabled ${ENABLE_S3}
-        echo s3 endpoint ${S3_ENDPOINT}
-        echo usessl ${S3_USE_SSL}
-        echo bucket ${S3_BUCKET_NAME}
-{{else}}
-        echo s3 disabled for this deployment
-{{end}}
+        echo palmr starting, S3 support: ${ENABLE_S3}
+
