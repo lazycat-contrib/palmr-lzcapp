@@ -1,0 +1,39 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/palmr.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: palmr
+build:
+  run_buildscript: false
+images:
+  # 主应用：上游只有 v3.x.y-beta 家族（无完整稳定 SemVer tag），custom 通道解析 -beta 后缀
+  - id: palmr
+    target: service
+    service: palmr
+    source: kyantech/palmr
+    channel: custom
+    sort: semver
+    tag_regex: '^v\d+\.\d+\.\d+-beta$'
+    version_regex: '^v(?P<version>\d+\.\d+\.\d+)-beta$'
+    version_template: '{version}'
+    delivery:
+      mode: mirror
+stores:
+  official:
+    # Official store publication is intentionally disabled; publish only to Miaomiao Store.
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Palmr
+    summary: "Open-Source File Transfer"

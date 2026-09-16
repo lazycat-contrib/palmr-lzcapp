@@ -1,0 +1,14 @@
+package: lazycat.community.app.palmr
+version: 3.1.1
+name: Palmr
+description: "Open-Source File Transfer"
+min_os_version: "1.5.0"
+homepage: https://github.com/kyantech/Palmr
+author: kyantech
+locales:
+  zh:
+    description: "开源文件传输工具"
+    name: Palmr
+  en:
+    description: "Open-Source File Transfer"
+    name: Palmr
