@@ -1,4 +1,5 @@
 package: lazycat.community.app.palmr
+license: Apache-2.0
 version: 3.3.2
 name: Palmr
 description: "Open-Source File Transfer"
